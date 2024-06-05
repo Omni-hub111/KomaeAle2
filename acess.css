@@ -1,0 +1,405 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 4000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #53c197;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: scroll; /* Disable horizontal scrolling */
+    z-index: 1000;
+}
+
+body.overlay-open {
+    height: 720px;
+    overflow: hidden; /* Disable scrolling */
+}
+.top-bar {
+    position: fixed; /* Fix at the top of the screen */
+    top: 0;
+    right: 48px; /* Adjust the right distance */
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Hide Top Bar on screens 800px or smaller */
+@media screen and (max-width: 800px) {
+    .top-bar {
+        display: none;
+    }
+}
+
+@font-face {
+    font-family: 'Glowing Bubble'; /* Font family name */
+    src: url('Font/Glowing Bubble.ttf') format('truetype'); /* Path to the font file */
+}
+
+a {
+    font-family: 'Glowing Bubble', sans-serif; 
+}
+
+.top-bar a {
+    margin-right: 10px; /* Adjust margin */
+    font-size: 42px; /* Specify font size */
+    color: #000000;
+    text-decoration: none;
+}
+
+.bar {
+    width: 100%;
+    height: 5px;
+    background-color: #000;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.container {
+
+    display: flex;
+    flex-direction: column; /* Arrange content vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center align content */
+    width: 100%; /* Width is relative to the parent element */
+    min-height: 120vh; /* Minimum height is relative to the viewport height */
+    padding-top: 100px; /* Set top padding */
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
+    z-index: 30; /* Position behind other elements */
+    aspect-ratio: 16 / 9; /* Set the aspect ratio */
+}
+
+
+@keyframes splashAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.Shoes {
+    width: 40%;
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+
+#ShoesL {
+    left: -8%; /* Position to the left */
+    animation: moveRandom 15s infinite alternate, rotateLeft 18s infinite linear; /* Infinite alternate random movement and rotation */
+    z-index: 30; /* Position behind other elements */
+}
+
+#ShoesR {
+    right: -8%; /* Position to the right */
+    animation: moveRandom 15s infinite alternate, rotateRight 18s infinite linear; /* Infinite alternate random movement and rotation */
+    z-index: 30; /* Position behind other elements */
+}
+
+.Access-Title {
+    position: absolute;
+    top: 3%; /* コンテナの上から3%の位置に配置 */
+    width: 30%; /* 幅を30%に設定 */
+}
+
+.rectangle-container {
+    position: absolute; /* 仮想的なコンテナを作成 */
+    width: 45%; /* 長方形の幅を75%に設定 */
+    border: 3px solid #000000; /* 枠線を追加 */
+    box-sizing: border-box; /* パディングやボーダーを含む全体のサイズを調整 */
+    padding-top: 25%;
+}
+
+.rectangle-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* 親コンテナの幅に合わせる */
+    height: 100%; /* 親コンテナの高さに合わせる */
+    border: none; /* iframeのボーダーを削除 */
+    box-sizing: border-box; /* iframeのサイズを調整 */
+}
+
+
+#highlight {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    z-index: -1; /* Position behind other elements */
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f65e; /* Set overlay background color to yellow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* オーバーレイを他の要素よりも前面に表示 */
+    transition: opacity 0.3s ease; /* Set fade animation */
+}
+
+.overlay img {
+    margin-bottom: 20px; /* メニューアイコンとテキストの間の間隔を設定 */
+}
+
+.overlay .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay .text-container a {
+    margin: 10px; /* テキスト間の間隔を設定 */
+    font-size: 60px; /* テキストのフォントサイズを設定 */
+    color: #000000;
+}
+
+
+.menu-icon {
+    position: fixed;
+    top: 22px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar {
+    width: 100%;
+    height: 5px;
+    background-color: #000;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.menu-open .bar:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+.menu-open + .container {
+    transform: translateX(200px); /* Shift content to the right when the menu is open */
+}
+
+
+.acess-container {
+    
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 1200px; /* 上部の余白を設定 */
+    overflow-x: hidden; /* 横方向のスクロールを無効にする */
+    overflow-y: hidden; /* 縦方向のスクロールを無効にする */
+    margin-top: 150px; /* 上余白 */
+    margin-bottom: 20px; /* 下余白 */
+    z-index: -2; /* 他のコンテンツの背面に配置 */
+}
+
+.Back2-Image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0); /* 元の位置に戻す */
+    object-fit: cover; /* 画像をコンテナのサイズに収める */
+    z-index: -1; /* 他のコンテンツの背面に配置 */
+}
+
+
+
+.TRAIN {
+    width: 24%;
+    position: absolute;
+    top: 10%; /* 親要素の中央に配置するために 50% */
+    left: 50%; /* 親要素の中央に配置するために 50% */
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+
+.Trainaccess {
+    width: 70%;
+    position: absolute;
+    top: 50%; /* 親要素の中央に配置するために 50% */
+    left: 50%; /* 親要素の中央に配置するために 50% */
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+
+.TrainIc {
+    width: 30%;
+    position: absolute;
+    top: 75%; /* 親要素の中央に配置するために 50% */
+    left: 80%; /* 親要素の中央に配置するために 50% */
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+
+.car-container {
+    width: 100%;
+    height: 130%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden; /* 横方向のスクロールを無効にする */
+    overflow-y: hidden; /* 縦方向のスクロールを無効にする */
+    margin-top: 150px; /* 上余白 */
+    z-index: -2; /* 他のコンテンツの背面に配置 */
+}
+
+
+.Back5-Image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(0, 0); /* 元の位置に戻す */
+    object-fit: cover; /* 画像をコンテナのサイズに収める */
+    z-index: -1; /* 他のコンテンツの背面に配置 */
+    
+}
+
+.CAR {
+    width: 20%;
+    position: absolute;
+    top: 10%; /* 親要素の中央に配置するために 50% */
+    left: 50%; /* 親要素の中央に配置するために 50% */
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+
+@media screen and (max-width: 750px) {
+    .container {
+        display: flex;
+        flex-direction: column; /* コンテンツを縦方向に配置 */
+        justify-content: flex-start; /* コンテンツを上部に揃える */
+        align-items: center; /* コンテンツを中央に揃える */
+        width: 100%;
+        min-height: 40vh; /* 最小高さを設定 */
+        padding-top: 100px; /* 上部の余白を設定 */
+        box-sizing: border-box;
+        position: relative;
+        overflow-x: hidden; /* 横方向のスクロールを無効にする */
+        overflow-y: hidden; /* 縦方向のスクロールを無効にする */
+        z-index: 30; /* 他の要素の背面に配置 */
+    
+    }
+    
+    .acess-container {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding-top: 300px; /* 上部の余白を設定 */
+        overflow-x: hidden; /* 横方向のスクロールを無効にする */
+        overflow-y: hidden; /* 縦方向のスクロールを無効にする */
+        margin-top: 30px; /* 上余白 */
+        margin-bottom: 20px; /* 下余白 */
+        z-index: -2; /* 他のコンテンツの背面に配置 */
+    }
+
+    .car-container {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow-x: hidden; /* 横方向のスクロールを無効にする */
+        overflow-y: hidden; /* 縦方向のスクロールを無効にする */
+        margin-top: 10px; /* 上余白 */
+        z-index: -2; /* 他のコンテンツの背面に配置 */
+    }
+
+    
+    .Trainaccess {
+        width: 100%;
+        position: absolute;
+        top: 60%; /* 親要素の中央に配置するために 50% */
+        left: 50%; /* 親要素の中央に配置するために 50% */
+        transform: translate(-50%, -50%); /* 中央揃え */
+    }
+    .TrainIc {
+        width: 0%;
+        position: absolute;
+        top: 60%; /* 親要素の中央に配置するために 50% */
+        left: 50%; /* 親要素の中央に配置するために 50% */
+        transform: translate(-50%, -50%); /* 中央揃え */
+    }
+   
+
+}
+
+
+/* Keyframes for random vertical movement */
+@keyframes moveRandom {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(50px);
+    }
+    50% {
+        transform: translateX(-50px);
+    }
+    75% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(-55px);
+    }
+}
+
+/* Keyframes for left rotation */
+@keyframes rotateLeft {
+    0% {
+        transform: rotate(-70deg);
+    }
+    50% {
+        transform: rotate(-120deg);
+    }
+    100% {
+        transform: rotate(-70deg);
+    }
+}
+
+/* Keyframes for right rotation */
+@keyframes rotateRight {
+    0% {
+        transform: rotate(70deg);
+    }
+    50% {
+        transform: rotate(120deg);
+    }
+    100% {
+        transform: rotate(70deg);
+    }
+}
